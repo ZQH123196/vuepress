@@ -21,18 +21,19 @@ fun.call(thisArg, arg1, arg2, ...)
 fun.call_imitation(thisArg, arg1, arg2, ...)
 ```
 
-call 的功能：
-1. call() 提供新的 this 值给当前调用的函数/方法。**你可以使用call来实现继承**：写一个方法，然后让另外一个新的对象来继承它（而不是在新对象中再写一次这个方法）。
+**call 的功能**：
+1. call() 提供新的 this 值给当前调用的函数/方法。你可以使用call来实现继承：写一个方法，然后让另外一个新的对象来继承它（而不是在新对象中再写一次这个方法）。
 2. call() 给定参数后将会立即执行此函数。
-3. 如果这个函数处于non-strict mode，则指定为 null 和 undefined 的 this 值会自动指向全局对象(浏览器中就是 window 对象)，同时值为原始值(数字，字符串，布尔值)的 this 会指向该原始值的自动包装对象。
+3. 如果这个函数处于“非严格模式”，则指定为 null 和 undefined 的 this 值会自动指向全局对象(浏览器中就是 window 对象)，同时值为原始值(数字，字符串，布尔值)的 this 会指向该原始值的自动包装对象。
 
 功能一的的实现只需要简单的复制。
 
 功能二的实现要把参数弄齐全，然后在参数齐全情况下执行自己一次即可。
 > 这用 ES6 的参数解构来做十分的容易，否则就需要用 eval 来做。
+
 功能三的实现只需要一行：
 `let context = context || window;`
-null 跟 undefined 都会推算为 false，所以 context 为 null 和 undefined 时将会取值 window。
+null 跟 undefined 都会推算为 false，所以 context 为 null 和 undefined 时将会取值 window，用在 node 就换成 global。
 
 ---
 

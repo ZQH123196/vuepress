@@ -37,6 +37,7 @@ function genSidebarConfig (title1, title2) {
       collapsable: false,
       children: [
         '/blog/imitation/call apply/note',
+        '/blog/imitation/bind/note',
       ]
     }
   ]
