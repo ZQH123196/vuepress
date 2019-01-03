@@ -2,12 +2,11 @@
 [[toc]]
 ## 前言:
 
-用 ES6 的语法模拟 ES3 的 call 和 apply，因为浏览器的版本不会倒退到 ES3，重在理解。
+用 ES6 的语法模拟 ES3 的 call 和 apply，因为浏览器引擎的支持不会倒退到 ES3，重在理解。
 
 参考：
-> [冴羽的博客](https://github.com/mqyqingfeng/Blog/issues/11)
-
-> [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
+* [冴羽的博客](https://github.com/mqyqingfeng/Blog/issues/11)
+* [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
 
 ---
 
