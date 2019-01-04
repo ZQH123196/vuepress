@@ -1,8 +1,9 @@
 {
   "scripts": {
+    "w": "vuepress dev docs",
     "dev": "vuepress dev",
     "docs": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "docs:build": "vuepress build docs"
   },
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.0.0-alpha.0",
