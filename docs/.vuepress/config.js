@@ -30,6 +30,7 @@ function genSidebarConfig (title1, title2, title3) {
       collapsable: false,
       children: [
         '',
+        '/blog/project/转轴展开照片墙/note',
       ]
     },
     {
