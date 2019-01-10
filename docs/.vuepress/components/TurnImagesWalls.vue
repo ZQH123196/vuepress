@@ -100,7 +100,9 @@ export default {
     width: 100%;
     height: 100%;
     border-radius: 20px;
-    background-size: cover;
+    // 等比例缩放
+    background-size: auto;
+    background-repeat: no-repeat;
     background-position: center;
     opacity: 0.5;
   }
@@ -137,23 +139,23 @@ export default {
     }
 
     &:nth-of-type(2) .image {
-      background-image: url('/images/1.jpg');
+      background-image: url('/images/2.jpg');
     }
 
     &:nth-of-type(3) .image {
-      background-image: url('/images/1.jpg');
+      background-image: url('/images/3.jpg');
     }
 
     &:nth-of-type(4) .image {
-      background-image: url('/images/1.jpg');
+      background-image: url('/images/4.jpg');
     }
 
     &:nth-of-type(5) .image {
-      background-image: url('/images/1.jpg');
+      background-image: url('/images/5.jpg');
     }
 
     &:nth-of-type(6) .image {
-      background-image: url('/images/1.jpg');
+      background-image: url('/images/6.jpg');
     }
   }
 }
