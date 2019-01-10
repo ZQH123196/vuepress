@@ -13,7 +13,7 @@ module.exports = {
       },
     ],
     sidebar: {
-      '/': genSidebarConfig('综合项目', 'imitation', '文章')
+      '/': genSidebarConfig('项目', 'imitation', '文章', '迷思')
     },
     lastUpdated: '上次更新'
   },
@@ -23,14 +23,14 @@ module.exports = {
 }
 // VuePress 内置了基于 headers 的搜索 —— 它会自动为所有页面的标题、h2 和 h3 构建起一个简单的搜索索引。
 
-function genSidebarConfig (title1, title2, title3) {
+function genSidebarConfig (title1, title2, title3, title4) {
   return [
     {
       title: title1,
       collapsable: false,
       children: [
         '',
-        '/blog/project/转轴展开照片墙/note',
+        '/blog/project/转轴展开照片墙/note'
       ]
     },
     {
@@ -45,7 +45,14 @@ function genSidebarConfig (title1, title2, title3) {
       title: title3,
       collapsable: false,
       children: [
-        '/blog/note/this/note'
+        '/blog/note/this/note',      
+      ]
+    },
+    {
+      title: title4,
+      collapsable: false,
+      children: [
+        '/blog/thinking/标准与规范/note.md',
       ]
     }
   ]

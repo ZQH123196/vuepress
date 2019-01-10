@@ -1,7 +1,7 @@
 {
   "scripts": {
     "w": "vuepress dev docs",
-    "dev": "vuepress dev",
+    "dev": "vuepress dev docs",
     "docs": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
