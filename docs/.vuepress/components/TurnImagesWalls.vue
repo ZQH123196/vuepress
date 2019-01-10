@@ -14,7 +14,7 @@
           <div class="image"></div>
           <div class="title">image</div>
           <div class="dir">
-            <div class="header">bird</div>
+            <!-- <div class="header">bird</div> -->
             <div
               class="close"
               @click.stop="handleClickClose"
@@ -42,8 +42,6 @@ export default {
       this.init = "inner";
     },
     handleClickActive(e) {
-      console.log("add");
-
       let liElement = e.srcElement.parentElement.parentElement;
       liElement.classList.add("active");
       this.$refs.active = liElement;
@@ -53,8 +51,6 @@ export default {
       this.wrapperActive = false;
       let liEl = this.$refs.active;
       liEl.classList.remove("active");
-      console.log(this.$refs);
-      console.log("remove");
     }
   },
   mounted() {
@@ -70,24 +66,22 @@ export default {
   list-style: none;
 }
 
-.wrapper ul {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 90%;
-  width: 90%;
-}
-
 .wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 40rem;
   width: 60rem;
-  background-color: black;
-  border: 1px solid red;
 
+  // background-color: black;
+  // border: 5px solid red;
   ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+
     .item {
       .inner {
         width: 100%;
@@ -111,53 +105,54 @@ export default {
     opacity: 0.5;
   }
 
-  ul {
-    li:nth-of-type(1) .inner {
+  // 动画延迟与图片地址
+  ul li {
+    &:nth-of-type(1) .inner {
       transition-delay: 0s;
     }
 
-    li:nth-of-type(2) .inner {
+    &:nth-of-type(2) .inner {
       transition-delay: 0.1s;
     }
 
-    li:nth-of-type(3) .inner {
+    &:nth-of-type(3) .inner {
       transition-delay: 0.2s;
     }
 
-    li:nth-of-type(4) .inner {
+    &:nth-of-type(4) .inner {
       transition-delay: 0.3s;
     }
 
-    li:nth-of-type(5) .inner {
+    &:nth-of-type(5) .inner {
       transition-delay: 0.4s;
     }
 
-    li:nth-of-type(6) .inner {
+    &:nth-of-type(6) .inner {
       transition-delay: 0.5s;
     }
 
     /* image */
-    li:nth-of-type(1) .image {
+    &:nth-of-type(1) .image {
       background-image: url('/images/1.jpg');
     }
 
-    li:nth-of-type(2) .image {
+    &:nth-of-type(2) .image {
       background-image: url('/images/1.jpg');
     }
 
-    li:nth-of-type(3) .image {
+    &:nth-of-type(3) .image {
       background-image: url('/images/1.jpg');
     }
 
-    li:nth-of-type(4) .image {
+    &:nth-of-type(4) .image {
       background-image: url('/images/1.jpg');
     }
 
-    li:nth-of-type(5) .image {
+    &:nth-of-type(5) .image {
       background-image: url('/images/1.jpg');
     }
 
-    li:nth-of-type(6) .image {
+    &:nth-of-type(6) .image {
       background-image: url('/images/1.jpg');
     }
   }
@@ -165,53 +160,49 @@ export default {
 
 // 动画
 .wrapper.wrapperActive ul {
+  // li且伴随.active 时变大并画 ×
   li.active {
     width: 100%;
+
+    .dir {
+      .close {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        width: 30px;
+        height: 30px;
+        // 打开图片时旋转图标
+        transform: rotate(360deg);
+        transition: transform 1s linear;
+
+        &::before, &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          // 这个 top 是为了将伪元素跟实际元素重叠
+          top: 15px;
+          width: 30px;
+          height: 4px;
+          background-color: white;
+        }
+
+        &::before {
+          transform: rotate(45deg);
+        }
+
+        &::after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
   }
 
+  // 其他未启用的图片变小至无
   li:not(.active) {
     height: 0;
     width: 0;
-  }
-
-  li {
-    transition: height 1s linear, width 1s 0.5s linear;
-  }
-}
-
-/* 画 × */
-.wrapper ul li {
-  .dir .close {
-    z-index: 5;
-    position: absolute;
-    top: 50px;
-    width: 50px;
-    height: 50px;
-    /* opacity: 0; */
-  }
-
-  .dir .close {
-    position: absolute;
-    right: 50px;
-    width: 30px;
-    height: 30px;
-  }
-
-  .dir .close::before, .dir .close::after {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 30px;
-    height: 4px;
-    background-color: white;
-  }
-
-  .dir .close::before {
-    transform: rotate(45deg);
-  }
-
-  .dir .close::after {
-    transform: rotate(-45deg);
+    opacity: 0;
+    transition: height 1s linear, width 1s 0.5s linear, opacity 1s linear;
   }
 }
 
@@ -220,14 +211,14 @@ export default {
   flex: 0 1 auto;
   height: 100%;
   width: 100%;
-  border: 3px solid black;
+  border: 1px solid black;
   border-radius: 20px;
   background-color: #333;
-  /* 动画还原 */
+  /* 动画去除后图片还原 */
   transition: width 1s 0.5s linear, height 1s linear;
 }
 
-.wrapper ul li .title {
+.wrapper:not(.wrapperActive) ul li .title {
   position: absolute;
   top: 50%;
   left: 50%;
