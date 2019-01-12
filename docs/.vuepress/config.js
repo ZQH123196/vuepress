@@ -30,7 +30,9 @@ function genSidebarConfig (title1, title2, title3, title4) {
       collapsable: false,
       children: [
         '',
-        '/blog/project/转轴展开照片墙/note'
+        '/blog/project/转轴展开照片墙/note',
+        '/blog/project/魔方/note',
+        '/blog/project/3D旋转轮播图/note',
       ]
     },
     {
