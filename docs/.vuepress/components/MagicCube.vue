@@ -2,12 +2,12 @@
   <div>
     <div class="wrapper">
       <div class="cube currentPosition">
-        <img src="/images/1.jpg">
-        <img src="/images/2.jpg">
-        <img src="/images/3.jpg">
-        <img src="/images/4.jpg">
-        <img src="/images/5.jpg">
-        <img src="/images/6.jpg">
+        <img
+          v-for="(item, idx) of classList"
+          :key="idx"
+          :src="'/images/'+1+'.jpg'"
+        >
+
       </div>
       <h2>请点击下方的图片按钮</h2>
       <div class="image-buttons">
@@ -29,12 +29,12 @@ export default {
   data() {
     return {
       classList: [
-        "images-1",
-        "images-2",
-        "images-3",
-        "images-4",
-        "images-5",
-        "images-6"
+        "image-1",
+        "image-2",
+        "image-3",
+        "image-4",
+        "image-5",
+        "image-6"
       ]
     };
   }
@@ -66,23 +66,22 @@ export default {
   width: 30rem;
   height: 30rem;
   margin: 3rem auto 10rem;
+  perspective: 100rem;
+  transform-style: preserve-3d;
 
   .cube {
-    perspective: 100rem;
     transform-style: preserve-3d;
     position: relative;
     width: 100%;
     height: 100%;
-    transform-origin: center;
-    perspective-origin: center;
     // 动画过渡在此
     transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 
     img {
       position: absolute;
       display: block;
-      background-size: contain;
-      background-repeat: no-repeat;
+      // background-size: contain;
+      // background-repeat: no-repeat;
       width: 100%;
       height: 100%;
     }
@@ -90,6 +89,7 @@ export default {
 }
 
 // 第一第二上下面，第三第四左右面，五六前后面
+// 中心点 x:(15+15)/2 y:(15+15)/2 z:(15+15)/2
 .wrapper .cube {
   img:nth-child(1) {
     transform: translateZ(15rem);
@@ -118,7 +118,7 @@ export default {
 
 .cube.currentPosition {
   // 整个魔方倾斜
-  transform: translateZ(-15rem) rotateX(-15deg) rotateY(15deg);
+  // transform: translateZ(-15rem) rotateX(-15deg) rotateY(15deg);
 }
 
 // 被点击动画
