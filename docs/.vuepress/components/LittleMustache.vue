@@ -1,56 +1,103 @@
 <template>
-  <div>
-    <div class="mustache"></div>
 
+  <div class="mustache">
+    <div class="leftRound">
+      <div class="leftMustache"></div>
+    </div>
+    <div class="rightRound">
+      <div class="rightMustache"></div>
+    </div>
   </div>
+
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      pageEl: {},
+    }
+  },
+  methods: {
+    handleMouseMove() {
+      
+    }
+  },
+  mounted() {
+    this.pageEl = document.getElementsByClassName('page')[0];
+    this.pageEl.addEventListener('mousemove', function (e) {
+      // x,y 转化为百分比
+      let x = e.clientX / this.clientX;
+      let y = e.clientY / this.clientY;
+
+      
+
+    })
+  }
+};
 </script>
 
 <style lang="stylus" scoped>
 .mustache {
   position: relative;
-  height: 180px;
-  width: 180px;
-  left: 100px;
-  color: black;
-  background-color: red; // 隐藏本体
-  border-radius: 50%;
-  // 直径为 180px 的圆，半径为 90 px
-  box-shadow: 150px 240px 0 0 currentColor, 300px 240px 0 0 currentColor;
+  --mouse-x = 0.1;
+  roundDiameter = 180px;
+  // 撑开下面文字
+  padding-bottom: 200px;
 
-  // 左边
-  &:before {
-    content: '';
-    width: 210px;
-    height: 120px;
-    // 移动到参照圆的圆心
-    top: 120px;
-    left: 30px;
-    position: absolute;
-    // background-color: red;
-    border-bottom: 180px solid red;
-    border-radius: 0 0 0 100%;
-    // 围绕参照圆心旋转，便于日后添加动画
-    transform-origin: 100% 210px;
-    transform: rotate(-40deg);
+  .leftRound {
+    position: relative;
+    top: 200px;
+    left: 150px;
+    height: roundDiameter;
+    width: roundDiameter;
+    color: black;
+    background-color: currentColor;
+    border-radius: 50%;
+
+    .leftMustache {
+      position: relative;
+      // 让边相切圆心
+      right: (roundDiameter / 2);
+      width: 100%;
+      height: 100%;
+      color: black;
+      // background-color: currentColor;
+      border-bottom: roundDiameter solid red;
+      border-radius: 0 0 0 100%;
+      top: -(roundDiameter);
+      // 这里将旋转中心从自身中心，转移到父级圆的圆心上。
+      transform-origin: 100% 75%;
+      transform: rotate(-40deg);
+    }
   }
 
   // 右边
-  &:after {
-    content: '';
-    width: 210px;
-    height: 120px;
-    top: 120px;
-    left: 390px;
-    position: absolute;
-    // background-color: red;
-    border-bottom: 180px solid red;
-    border-radius: 0 0 100% 0;
-    transform-origin: 0% 210px;
-    transform: rotate(40deg);
+  .rightRound {
+    position: relative;
+    top: 20px;
+    left: 290px;
+    height: roundDiameter;
+    width: roundDiameter;
+    color: black;
+    background-color: currentColor;
+    border-radius: 50%;
+
+    .rightMustache {
+      position: relative;
+      // 让边相切圆心
+      left: (roundDiameter / 2);
+      width: 100%;
+      height: 100%;
+      color: black;
+      // background-color: currentColor;
+      border-bottom: roundDiameter solid red;
+      border-radius: 0 0 100% 0;
+      top: -(roundDiameter);
+      // 这里将旋转中心从自身中心，转移到父级圆的圆心上。
+      transform-origin: 0 75%;
+      transform: rotate(40deg);
+    }
   }
 }
 </style>
