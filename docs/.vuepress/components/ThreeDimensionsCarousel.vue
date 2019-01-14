@@ -39,21 +39,15 @@ export default {
     };
   },
   methods: {
-    handleMousemove(e) {
-      //   if (this.timer) {
-      //     clearTimeout(this.timer);
-      //   }
-      //   this.timer = setTimeout(() => {
-      //     const element = this.$refs["mouceMoveArea"];
-      //     element.style.perspectiveOrigin = ` ${e.layerX}px ${e.layerY}px`;
-      //   }, 10);
-    }
-  },
-  mounted() {
-    // // content 是由 vuepress 添加控制
-    // // 为了让鼠标移动区跟 content 一样大小
-    // const contentEl = document.getElementsByClassName("content")[0];
-    // const mouceMoveAreaEl = this.$refs["mouceMoveArea"];
+    // handleMousemove(e) {
+    //   //   if (this.timer) {
+    //   //     clearTimeout(this.timer);
+    //   //   }
+    //   //   this.timer = setTimeout(() => {
+    //   //     const element = this.$refs["mouceMoveArea"];
+    //   //     element.style.perspectiveOrigin = ` ${e.layerX}px ${e.layerY}px`;
+    //   //   }, 10);
+    // }
   }
 };
 </script>
