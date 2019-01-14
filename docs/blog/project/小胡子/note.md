@@ -1,12 +1,14 @@
 # 小胡子
-
+[[toc]]
 <LittleMustache/>
 
-# 思路
-利用 border-bottom 来创造形状！
-需要两个元素来表示左右的两撇胡子，可以用一个元素的 before 和 after 来做。
-box-shadow 可以添加多个阴影。
-  box-shadow: 150px 240px 0 0 currentColor, 300px 240px 0 0 currentColor;
+## 思路
 
-设置旋转的中心围绕着参照圆
+1. 总共需要四个元素，两个用来做圆，两个用来绘制胡子的形状。
+2. 利用 border-radius 可以绘制出弧形。
+3. 利用 CSS 原生变量可以方便的做出动态效果，也可以用 transition、@keyframes 来做，但 CSS 变量是最直观也最符合编程习惯的。
 
+
+## Vue 源码
+
+<<< @/docs/.vuepress/components/LittleMustache.vue
