@@ -1,5 +1,4 @@
 # 小胡子
-[[toc]]
 <LittleMustache/>
 
 ## 思路
@@ -9,6 +8,6 @@
 3. 利用 CSS 原生变量可以方便的做出动态效果，也可以用 transition、@keyframes 来做，但 CSS 变量是最直观也最符合编程习惯的。
 
 
-## Vue 源码
+## 源码
 
 <<< @/docs/.vuepress/components/LittleMustache.vue

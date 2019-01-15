@@ -16,6 +16,6 @@
 
 过渡：transition 或 @keyframes 或 vue 的过渡语法，事实上我发现 vue 的过渡语法不仅更好写，也更易于维护，因为你知道所有的过渡就在那几个地方。
 
-## Vue 源码
+## 源码
 
 <<< @/docs/.vuepress/components/TurnImagesWalls.vue

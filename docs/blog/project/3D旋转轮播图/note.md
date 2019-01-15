@@ -10,6 +10,10 @@
 
 3. 添加可视范围的选择按钮。
 
+## 源码
+
+<<< docs/.vuepress/components/ThreeDimensionsCarousel.vue
+
 <!-- skew - 2D 倾斜变换
 
 倾斜的是坐标轴，而不是元素本身

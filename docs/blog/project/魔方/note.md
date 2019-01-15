@@ -10,6 +10,6 @@
 
 当被点击时，去除初始状态加入代表动画状态的类，旋转至对应的图片即可。
 
-## Vue 源码
+## 源码
 
 <<< @/docs/.vuepress/components/MagicCube.vue

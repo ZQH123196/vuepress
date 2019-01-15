@@ -13,7 +13,7 @@ module.exports = {
       },
     ],
     sidebar: {
-      '/': genSidebarConfig('项目', 'imitation', '文章', '迷思')
+      '/': genSidebarConfig('小demo', 'imitation', '文章', '迷思')
     },
     lastUpdated: '上次更新'
   },
@@ -34,6 +34,7 @@ function genSidebarConfig (title1, title2, title3, title4) {
         '/blog/project/魔方/note',
         '/blog/project/3D旋转轮播图/note',
         '/blog/project/小胡子/note',
+        '/blog/project/蜂巢六边形/note.md',
       ]
     },
     {
