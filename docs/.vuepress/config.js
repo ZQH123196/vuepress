@@ -13,7 +13,7 @@ module.exports = {
       },
     ],
     sidebar: {
-      '/': genSidebarConfig('小demo', 'imitation', '文章', '迷思')
+      '/': genSidebarConfig('项目', '小项目', '动效', 'imitation', '文章', '迷思')
     },
     lastUpdated: '上次更新'
   },
@@ -23,22 +23,35 @@ module.exports = {
 }
 // VuePress 内置了基于 headers 的搜索 —— 它会自动为所有页面的标题、h2 和 h3 构建起一个简单的搜索索引。
 
-function genSidebarConfig (title1, title2, title3, title4) {
+function genSidebarConfig (title1, title2, title3, title4, title5, title6) {
   return [
     {
       title: title1,
       collapsable: false,
       children: [
         '',
-        '/blog/project/转轴展开照片墙/note',
-        '/blog/project/魔方/note',
-        '/blog/project/3D旋转轮播图/note',
-        '/blog/project/小胡子/note',
-        // '/blog/project/蜂巢六边形/note.md',
       ]
     },
     {
       title: title2,
+      collapsable: false,
+      children: [
+        '',
+      ]
+    },
+    {
+      title: title3,
+      collapsable: false,
+      children: [
+        '/blog/动效/转轴展开照片墙/note',
+        '/blog/动效/魔方/note',
+        '/blog/动效/3D旋转轮播图/note',
+        '/blog/动效/小胡子/note',
+        // '/blog/project/蜂巢六边形/note.md',
+      ]
+    },
+    {
+      title: title4,
       collapsable: false,
       children: [
         '/blog/imitation/callapply/note',
@@ -46,14 +59,14 @@ function genSidebarConfig (title1, title2, title3, title4) {
       ]
     },
     {
-      title: title3,
+      title: title5,
       collapsable: false,
       children: [
         '/blog/note/this/note',      
       ]
     },
     {
-      title: title4,
+      title: title6,
       collapsable: false,
       children: [
         '/blog/thinking/标准与规范/note.md',
