@@ -29,47 +29,47 @@ function genSidebarConfig (title1, title2, title3, title4, title5, title6) {
       title: title1,
       collapsable: false,
       children: [
-        '',
+        ``,
       ]
     },
     {
       title: title2,
       collapsable: false,
       children: [
-        '',
+        ``,
       ]
     },
     {
       title: title3,
       collapsable: false,
       children: [
-        '/blog/动效/转轴展开照片墙/note',
-        '/blog/动效/魔方/note',
-        '/blog/动效/3D旋转轮播图/note',
-        '/blog/动效/小胡子/note',
-        // '/blog/project/蜂巢六边形/note.md',
+        `/blog/${title3}/转轴展开照片墙/note`,
+        `/blog/${title3}/魔方/note`,
+        `/blog/${title3}/3D旋转轮播图/note`,
+        `/blog/${title3}/小胡子/note`,
+        `/blog/${title3}/简单翻页/note`,
       ]
     },
     {
       title: title4,
-      collapsable: false,
+      collapsable: true,
       children: [
-        '/blog/imitation/callapply/note',
-        '/blog/imitation/bind/note',
+        `/blog/${title4}/callapply/note`,
+        `/blog/${title4}/bind/note`,
       ]
     },
     {
       title: title5,
-      collapsable: false,
+      collapsable: true,
       children: [
-        '/blog/note/this/note',      
+        `/blog/note/this/note`,      
       ]
     },
     {
       title: title6,
-      collapsable: false,
+      collapsable: true,
       children: [
-        '/blog/thinking/标准与规范/note.md',
+        `/blog/thinking/标准与规范/note.md`,
       ]
     }
   ]

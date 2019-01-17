@@ -17,19 +17,21 @@ export default {
     };
   },
   methods: {
-    handleMouseMove() {}
+    handleMouseMove() {
+      this.pageEl = document.getElementsByClassName("page")[0];
+      this.pageEl.addEventListener("mousemove", function(e) {
+        // x,y 转化为百分比
+        let x = e.clientX / window.innerWidth;
+        let y = e.clientY / window.innerHeight;
+
+        // css 变量可被继承
+        this.style.setProperty("--mouse-x", x);
+        this.style.setProperty("--mouse-y", y);
+      });
+    }
   },
   mounted() {
-    this.pageEl = document.getElementsByClassName("page")[0];
-    this.pageEl.addEventListener("mousemove", function(e) {
-      // x,y 转化为百分比
-      let x = e.clientX / window.innerWidth;
-      let y = e.clientY / window.innerHeight;
-
-      // css 变量可被继承
-      this.style.setProperty("--mouse-x", x);
-      this.style.setProperty("--mouse-y", y);
-    });
+    this.handleMouseMove();
   }
 };
 </script>
