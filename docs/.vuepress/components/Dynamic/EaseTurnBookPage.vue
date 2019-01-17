@@ -20,18 +20,17 @@
 export default {
   data() {
     return {
-      total: [1, 2, 3, 4],
-      // 最左边为栈顶
-      leftStack: [],
-      rightStack: [1, 2, 3, 4],
-      topIndex: 2,
-      secondIndex: 1
+      total: [1, 2, 3, 4, 5, 6],
+      rightPageNumber: 0,
     };
   },
   methods: {
     init() {
       const pageEl = this.$refs["wrapper"];
       pageEl.style["perspective"] = "800px";
+      
+      // 初始化右页面数
+      this.rightPageNumber = this.total.length;
 
       this.manageIndex();
     },
@@ -48,38 +47,26 @@ export default {
       const el = e.target;
       el.classList.remove("turnPageRightClass");
       el.classList.add("turnPageLeftClass");
-      // 左边入栈，右边出栈
-      this.leftStack.unshift(this.rightStack.shift());
-      if (this.leftStack.length >= 3) {
-        // 清除原 leftStack second 的 z-index，此时已经发生栈顶移动，所以是第三个
-        const third = this.leftStack[2];
-        this.$refs[`${third}`][0].style["z-index"] = 0;
-      }
+
+      this.rightPageNumber--;
     },
     turnPageRight(e) {
       const el = e.target;
       el.classList.remove("turnPageLeftClass");
       el.classList.add("turnPageRightClass");
 
-      this.rightStack.unshift(this.leftStack.shift());
-      if (this.rightStack.length >= 3) {
-        const third = this.rightStack[2];
-        this.$refs[`${third}`][0].style["z-index"] = 0;
-      }
+      this.rightPageNumber++;
     },
     manageIndex() {
-      if (this.leftStack.length >= 2) {
-        const top = this.leftStack[0];
-        const second = this.leftStack[1];
-
-        this.$refs[`${top}`][0].style["z-index"] = this.topIndex;
-        this.$refs[`${second}`][0].style["z-index"] = this.secondIndex;
-      }
-      if (this.rightStack.length >= 2) {
-        const top = this.rightStack[0];
-        const second = this.rightStack[1];
-        this.$refs[`${top}`][0].style["z-index"] = this.topIndex;
-        this.$refs[`${second}`][0].style["z-index"] = this.secondIndex;
+      const totalLength = this.total.length;
+      const leftLength = totalLength - this.rightPageNumber;
+      for (let i = 1; i <= totalLength; i++) {
+        let el = this.$refs[`${i}`][0];
+        if (i <= leftLength) {
+          el.style["z-index"] = i;
+        } else {
+          el.style["z-index"] = -i;
+        }
       }
     }
   },
