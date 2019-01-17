@@ -97,7 +97,7 @@ export default {
 .wrapper {
   position: relative;
   width: 800px;
-  height: 800px;
+  height: 600px;
   transform-style: preserve-3d;
   color: green;
 
@@ -108,7 +108,7 @@ export default {
     .page {
       position: absolute;
       background-color: red;
-      top: 200px;
+      top: 100px;
       left: 300px;
       width: 250px;
       height: 400px;
