@@ -5,12 +5,24 @@
   >
     <div class="book">
       <div
+        class="page"
         v-for="pageNumber of total"
         :key="pageNumber"
         :ref="pageNumber"
-        @click.self="handleClick"
       >
-        <h1>{{pageNumber}}</h1>
+        <div
+          @click.self="handleClick"
+          class="front"
+        >
+          <h1>{{pageNumber}}</h1>
+        </div>
+        <div
+          @click.self="handleClick"
+          class="back"
+        >
+          <h1>{{pageNumber + "　的背面"}}</h1>
+        </div>
+
       </div>
     </div>
   </div>
@@ -20,15 +32,15 @@
 export default {
   data() {
     return {
-      total: [1, 2, 3, 4, 5, 6],
-      rightPageNumber: 0,
+      total: [1, 2, 3, 4],
+      rightPageNumber: 0
     };
   },
   methods: {
     init() {
       const pageEl = this.$refs["wrapper"];
       pageEl.style["perspective"] = "800px";
-      
+
       // 初始化右页面数
       this.rightPageNumber = this.total.length;
 
@@ -36,24 +48,24 @@ export default {
     },
     handleClick(e) {
       // 向左向右是一个互斥状态。
-      if (!e.target.classList.contains("turnPageLeftClass")) {
-        this.turnPageLeft(e);
+      // 正面或背面触发，旋转父级 page
+      const pageEl = e.target.parentElement;
+      if (!pageEl.classList.contains("turnPageLeftClass")) {
+        this.turnPageLeft(pageEl);
       } else {
-        this.turnPageRight(e);
+        this.turnPageRight(pageEl);
       }
       this.manageIndex();
     },
-    turnPageLeft(e) {
-      const el = e.target;
-      el.classList.remove("turnPageRightClass");
-      el.classList.add("turnPageLeftClass");
+    turnPageLeft(pageEl) {
+      pageEl.classList.remove("turnPageRightClass");
+      pageEl.classList.add("turnPageLeftClass");
 
       this.rightPageNumber--;
     },
-    turnPageRight(e) {
-      const el = e.target;
-      el.classList.remove("turnPageLeftClass");
-      el.classList.add("turnPageRightClass");
+    turnPageRight(pageEl) {
+      pageEl.classList.remove("turnPageLeftClass");
+      pageEl.classList.add("turnPageRightClass");
 
       this.rightPageNumber++;
     },
@@ -77,43 +89,50 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+* {
+  magin: 0;
+  padding: 0;
+}
+
 .wrapper {
   position: relative;
   width: 800px;
   height: 800px;
   transform-style: preserve-3d;
-  color: white;
+  color: green;
 
   .book {
     transform: rotateX(30deg);
     transform-style: preserve-3d;
 
-    div {
+    .page {
       position: absolute;
-      background-color: black;
+      background-color: red;
       top: 200px;
       left: 300px;
       width: 250px;
       height: 400px;
+      transform-style: preserve-3d;
       transform-origin: left center;
-      backface-visibility: visible;
+      backface-visibility: hidden;
       text-align: center;
-    }
 
-    div:nth-child(1) {
-      background-color: red;
-    }
+      .front {
+        position: absolute;
+        background-color: pink;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+      }
 
-    div:nth-child(2) {
-      background-color: green;
-    }
-
-    div:nth-child(3) {
-      background-color: blue;
-    }
-
-    div:nth-child(4) {
-      background-color: yellow;
+      .back {
+        position: absolute;
+        background-color: black;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        transform: rotateY(180deg);
+      }
     }
 
     .turnPageLeftClass {

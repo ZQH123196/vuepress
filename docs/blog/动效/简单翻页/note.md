@@ -10,6 +10,8 @@
 
 例如：当前左边页面有三张，右边页面有四张，此时的 z-index 排列为：1 2 3 -4 -5 -6。此时，左面显示的会是 z-index===3 的页面，而右面显示的会是 z-index===-4 的页面。
 
+正反面：这个非常简单，用 backface-visibility 来做，设置一页有两面，背面绕 Y 轴旋转 180°即可，backface-visibility。
+
 ## 源码
 
 <<< docs/.vuepress/components/Dynamic/EaseTurnBookPage.vue
