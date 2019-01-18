@@ -12,6 +12,8 @@
 
 正反面：这个非常简单，用 backface-visibility 来做，设置一页有两面，背面绕 Y 轴旋转 180°即可，backface-visibility。
 
+由于旋转角度的一致，导致页面会发生层叠的效果，导致翻页时有点出漏子，可以设置除了两边最顶上那一页，其余的 Z 轴全部下降一度 1°。
+
 ## 源码
 
 <<< docs/.vuepress/components/Dynamic/EaseTurnBookPage.vue

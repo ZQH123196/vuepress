@@ -48,6 +48,8 @@ function genSidebarConfig (title1, title2, title3, title4, title5, title6) {
         `/blog/${title3}/3D旋转轮播图/note`,
         `/blog/${title3}/小胡子/note`,
         `/blog/${title3}/翻页动画/note`,
+        `/blog/${title3}/书籍展示/note`,
+
       ]
     },
     {
