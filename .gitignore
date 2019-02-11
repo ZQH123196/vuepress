@@ -63,3 +63,4 @@ typings/
 docs/.vuepress/dist
 tmp/
 tmp/tmp.html
+docs/.vuepress/dist
