@@ -50,6 +50,7 @@ function genSidebarConfig (title1, title2, title3, title4, title5, title6) {
         `/blog/${title3}/翻页动画/note`,
         `/blog/${title3}/书籍展示/note`,
         `/blog/${title3}/3D环绕球/note`,
+        `/blog/${title3}/弹出层/note`,
 
       ]
     },
@@ -65,8 +66,8 @@ function genSidebarConfig (title1, title2, title3, title4, title5, title6) {
       title: title5,
       collapsable: true,
       children: [
-        `/blog/${title5}/this/note`,
-        `/blog/${title5}/this/note`,      
+        // `/blog/${title5}/this/note`,
+        // `/blog/${title5}/this/note`, 
       ]
     },
     {
