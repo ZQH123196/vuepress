@@ -51,6 +51,8 @@ function genSidebarConfig (title1, title2, title3, title4, title5, title6) {
         `/blog/${title3}/书籍展示/note`,
         `/blog/${title3}/3D环绕球/note`,
         `/blog/${title3}/弹出层/note`,
+        `/blog/${title3}/CSS\ day\ 1/note`,
+
 
       ]
     },
