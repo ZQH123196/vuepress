@@ -66,8 +66,8 @@ function genSidebarConfig(title1, title2, title3, title4, title5, title6) {
       title: title4,
       collapsable: true,
       children: [
-        `/blog/${title4}/callapply/note`,
-        `/blog/${title4}/bind/note`,
+        // `/blog/${title4}/callapply/note`,
+        // `/blog/${title4}/bind/note`,
       ]
     },
     {
