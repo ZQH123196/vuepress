@@ -6,7 +6,9 @@
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.0.0-alpha.0",
-    "vuepress": "^0.14.8"
-  }
+    "vuepress": "^1.0.0-alpha.46",
+    "@vuepress/plugin-back-to-top": "^1.0.0-alpha.46",
+    "vuepress-plugin-mathjax": "^1.2.4"
+  },
+  "dependencies": {}
 }

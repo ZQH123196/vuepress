@@ -1,5 +1,11 @@
 # 弹出层
 
+<!-- <Mask-Layer/> -->
+
+<tmp/>
+
+<iframe src="/images/termtosvg_eidb4fvu.svg" style="height:500px;width:1000px;" frameborder=0></iframe>
+
 ## 思路：
 
 很简单，就是多加一层布，这层布需要跟屏幕一样大。
@@ -12,7 +18,6 @@
 
 注意：z-index 在相同层级的 position 中生效。
 
-<Mask-Layer/>
 
 ## 源码
 
