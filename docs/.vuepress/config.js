@@ -79,6 +79,7 @@ function genSidebarConfig(title1, title2, title3, title4, title5, title6) {
         `/blog/${title5}/defineProperty/note`,
         `/blog/${title5}/Koa2/note`,
         `/blog/${title5}/Koa2/note1`,
+        `/blog/${title5}/ES5-数据劫持/note`,
       ]
     },
     {
