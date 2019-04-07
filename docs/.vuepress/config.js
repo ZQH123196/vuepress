@@ -23,7 +23,6 @@ module.exports = {
     lastUpdated: '上次更新'
   },
   markdown: {
-    toc: { includeLevel: [1, 2] },
     lineNumbers: true
   },
 }
@@ -79,7 +78,8 @@ function genSidebarConfig(title1, title2, title3, title4, title5, title6) {
         `/blog/${title5}/defineProperty/note`,
         `/blog/${title5}/Koa2/note`,
         `/blog/${title5}/Koa2/note1`,
-        `/blog/${title5}/ES5-数据劫持/note`,
+        `/blog/${title5}/数据劫持/note`,
+        `/blog/${title5}/Proxy\&Reflect/note`,
       ]
     },
     {

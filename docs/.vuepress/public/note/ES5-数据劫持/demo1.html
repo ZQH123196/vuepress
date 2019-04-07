@@ -1,0 +1,48 @@
+<input id="ES5-dataGrab-input" type="text" value="eor" />
+
+<div id="ES5-dataGrab"></div>
+
+<script>
+    // 1. 存在一对象 data，内有数据 value，并为 data 内所有值添加 set 函数；
+    function Observer(data) {
+        // 数据为空或不是对象，就没有监控的意义了
+        if (!data || typeof data != "object") {
+            return data;
+        }
+        Object.keys(data).forEach(function (key) {
+            definedRective(data, key, data[key]);
+        });
+    }
+    function definedRective(data, key, val) {
+        // AO 保存了运行环境，形成闭包，保留 val 值
+        Object.defineProperty(data, key, {
+            get() {
+                return val;
+            },
+            set(newValue) {
+                // 4. 在 data.value 的 set 函数中进行赋值操作，并将值也赋值到用于展示的 div 中。
+                if (newValue == val) { return };
+                val = newValue;
+                upData();
+            }
+        })
+    }
+    let oData = {
+        value: 'eor'
+    };
+    Observer(oData);
+
+    let oInput = document.getElementById("ES5-dataGrab-input");
+    let oDiv = document.getElementById('ES5-dataGrab');
+
+    function upData() {
+        oDiv.innerText = oData.value;
+    }
+    upData(); // 先同步一次
+
+    // 2. 当往 input 框输入时，将触发 input 标签的 oninput 函数，然后在函数内将 input 的 value 值赋值给 data.value；
+    oInput.oninput = function () {
+        // 3. 当 data.value 被赋值，将触发对应值的 set 函数；
+        oData.value = this.value;
+    }
+</script>

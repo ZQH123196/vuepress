@@ -1,0 +1,33 @@
+<input id="ES5-dataGrab-input" type="text" value="eor" />
+
+<div id="ES5-dataGrab"></div>
+
+<script>
+    let oData = {
+        value: "eor"
+    };
+
+    let oProxyData = new Proxy(oData, {
+        get(target, name) {
+            if (typeof target == "Array") console.log("213")
+            console.log(typeof target)
+            return Reflect.get(target, name)
+        },
+        set(target, name, value) {
+            Reflect.set(target, name, value)
+            upData()
+        }
+    })
+
+    let oInput = document.getElementById("ES5-dataGrab-input");
+    let oDiv = document.getElementById('ES5-dataGrab');
+
+    function upData() {
+        oDiv.innerText = oProxyData.value;
+    }
+    upData(); // 先同步一次
+
+    oInput.oninput = function () {
+        oProxyData.value = this.value;
+    }
+</script>
