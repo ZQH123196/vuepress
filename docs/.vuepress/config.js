@@ -80,6 +80,7 @@ function genSidebarConfig(title1, title2, title3, title4, title5, title6) {
         `/blog/${title5}/Koa2/note1`,
         `/blog/${title5}/数据劫持/note`,
         `/blog/${title5}/Proxy\&Reflect/note`,
+        `/blog/${title5}/ES5\ 模拟\ Class/note`,
       ]
     },
     {
