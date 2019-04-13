@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.common.dev.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>x: {{x}}</p>
+        <p>y: {{y}}</p>
+        <p>z: {{z}}</p>
+    </div>
+</body>
+<!-- <script>
+    let vue = new Vue({
+        el: "#app",
+        data: {
+            x: 1,
+            y: 2,
+            z: {
+                name: "eor",
+                number: "10086"
+            }
+        }
+    });
+</script> -->
+<script>
+    let eue = new Eue({
+        el: "#app",
+        data: {
+            x: 1,
+            y: 2,
+            z: {
+                name: "eor",
+                number: "10086"
+            }
+        }
+    });
+
+    function Eue(options){
+        this.el = options.el;
+        this.data = options.data;
+
+        initData.call(this, options.data);
+    }
+
+    function initData() {
+        let newObject = new Object();
+
+        for (let key in data) {
+            let tmp;
+            if (typeof data[key] == "object") {
+                tmp = new Object();
+                initData.call(tmp, data);
+            } else {
+                temp = data[key]
+            }
+            Object.defineProperty()
+        }
+    }
+
+
+</script>
+</html>
