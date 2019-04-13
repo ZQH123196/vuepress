@@ -1,3 +1,6 @@
+const path = require("path");
+const fs = require("fs");
+// VuePress 内置了基于 headers 的搜索 —— 它会自动为所有页面的标题、h2 和 h3 构建起一个简单的搜索索引。
 module.exports = {
   title: 'Hello !',
   description: '郑启华的技术文档',
@@ -18,7 +21,7 @@ module.exports = {
     },
     ],
     sidebar: {
-      '/': genSidebarConfig("./docs")
+      '/': getSidebarConfig("./docs")
     },
     lastUpdated: '上次更新'
   },
@@ -26,76 +29,81 @@ module.exports = {
     lineNumbers: true
   },
 }
-// VuePress 内置了基于 headers 的搜索 —— 它会自动为所有页面的标题、h2 和 h3 构建起一个简单的搜索索引。
+
+function getSidebarConfig(docsPath) {
+	let allFloor = getAllFloor(docsPath)
+	// title 就在 second 层级
+	let titles = allFloor.second.map((val) => {
+		console.log(val)
+		return /.*blog\/([^/]*)\/?.*/.exec(val)[1]
+	})
+	// console.log(titles)
+	// 进行数据裁剪，绝对路径 vuepress 解析不了
+	let fourthStair = allFloor.fourth.map((val) => {
+		return val.replace(/.*docs/, "")
+	});
+	let result = [];
+	for (let i = 0; i < titles.length; i++) {
+		let re = new RegExp(`.*blog/${titles[i]}/?.*`)
+		result.push({
+			title: titles[i],
+			collapsable: false
+		})
+		result[i].children = fourthStair.filter((val) => {
+			if (re.test(val)) {
+				return true
+			}
+			return false
+		})
+		if(result[i].children.length === 0) result[i].children = []
+	}
+	
+	return result
+}
 
 // docs 主文档
 // docs/blog 第一阶，博客
 // docs/blog/collections 第二阶，title 的集合
 // docs/blog/collections/title 第三阶，文档标题
 // docs/blog/collections/title/file 第四阶，实际文档和相关文件，实际文档为 note.md 
-function genSidebarConfig(docsPath) {
-  // 遍历内部全部文件夹，并存下来备用，后续任何事情都可以依靠这些完整的数据解决
-  // 一个 title 名生成一个数组，此数组将交付给 children
-  // todo 0. 数据驱动，由 blog 内部的文件夹来决定 title 的数量，每多一个文件夹就会自动创建一个 title
-  const path = require("path");
-  const fs = require("fs");
-  let allFloor = {
-    first: [],
-    second: [],
-    third: [],
-    fourth: []
-  }
+function getAllFloor(docsPath) {
+	docsPath = path.resolve(docsPath)
+	let allFloor = {
+		first: [],
+		second: [],
+		third: [],
+		fourth: []
+	}
 
-  let firstStair = path.resolve(path.join(docsPath + "/blog/"));
-  allFloor.first.push(firstStair)
+	let firstStair = path.join(docsPath, "blog");
+	allFloor.first.push(firstStair)
 
-  fs.readdir(firstStair, (err, collections) => {
-    console.log(collections)
-    for (let i of collections) {
-      if (!(fs.statSync(i).isDirectory())) { continue }
-      let secondStair = path.join(firstStair, collection);
-      allFloor.second.push(secondStair)
+	let collections = fs.readdirSync(firstStair)
+	for (let collection of collections) {
+		let collectionPath = path.join(firstStair, collection)
+		// 过滤非文件夹的路径
+		if (!(fs.statSync(collectionPath).isDirectory())) { continue }
+		allFloor.second.push(collectionPath)
 
-      // fs.readdir(secondStair, (err, titleDirs) => {
-      //   if (err) { console.log(err) }
-      //   for (let j of titleDirs) {
-      //     if (fs.stat(j))
-      //     let title = path.join(secondStair, titleDir);
-      //     allFloor.third.push(title)
-      //     fs.readdir(title, (err, files) => {
-      //       if (err) { console.log(err) }
-      //       for (let fileName of fileNames) {
-      //         // 判定是否是 note.md
-      //         if (fileName === "note") {
-      //           let _ = path.join(title, fileName)
-      //           allFloor.fourth.push(_)
-      //         }
-      //       }
-      //     })
-      //   }
-      // })
-    }
-  })
-  console.log(allFloor)
+		let titleDirs = fs.readdirSync(collectionPath)
+		for (let titleDir of titleDirs) {
+			let titleDirPath = path.join(collectionPath, titleDir)
+			// 过滤非文件夹的路径
+			if (!(fs.statSync(titleDirPath).isDirectory())) { continue }
+			allFloor.third.push(titleDirPath)
 
-  // 将内部啥都没有的剔除
-  childrenList = childrenList.filter((element) => {
-    if (element.length === 0) {
-      return false;
-    }
-    return true;
-  })
-  let result = [];
-  for (let children of childrenList) {
-    let obj = {}
-    // children[0],[1],[2] 都一样
-    obj.title = /.*blog\/(.*)\//.exec(children[0])[1]
-    obj.collapsable = true
-    obj.children = children
-    result.push(obj)
-  }
-  console.log(result)
-  return result
+			let files = fs.readdirSync(titleDirPath)
+			for (let file of files) {
+				// 只允许名称为 note.md 的通过
+				if (file !== "note.md") { continue }
+				let filePath = path.join(titleDirPath, file)
+				allFloor.fourth.push(filePath)
+			}
+		}
+	}
+	return allFloor
+}
+
   // [
   //   {
   //     title: titles[0],
@@ -124,8 +132,6 @@ function genSidebarConfig(docsPath) {
   //       `/blog/${titles[2]}/3D环绕球/note`,
   //       `/blog/${titles[2]}/弹出层/note`,
   //       `/blog/${titles[2]}/CSS\ day\ 1/note`,
-
-
   //     ]
   //   },
   //   {
@@ -158,4 +164,3 @@ function genSidebarConfig(docsPath) {
   //     ]
   //   }
   // ]
-}
