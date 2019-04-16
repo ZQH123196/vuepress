@@ -199,7 +199,7 @@ ctx.cookies.get(name, [options])
 
 通过 options 获取 cookie name 时:
 * signed 所请求的cookie应该被签名
-:::
+
 
 
 在设置 `./routes/index.js` 的路由中设置 cookie:
@@ -222,30 +222,4 @@ router.get('/json', async (ctx, next) => { // 访问此路径查看之前设置�
 
 module.exports = router
 ```
-
-# koa 与 mongoDB
-
-参考：
-
-* [mongoose 文档](http://mongoosejs.net/docs/guide.html)
-
-其实原生的 SQL 命令挺好的，无奈现在是个 ORM 的社会，从 Django 到 Koa 都被推荐使用 ORM 库来操作数据库，而不是通过原生命令，也许是害怕我们这些瓜皮不小心把数据库给删了？
-
-安装用于 MongoDB 的 ORM 库 mongoose：
-
-```js
-yarn add mongoose
-```
-
-新建存放描述数据模型的文件夹以及其配置文件。
-
-```bash
-➜ mkdir -p ./dbs/models/
-➜ touch ./dbs/models/person.js
-➜ touch ./dbs/config.js
-```
-
-
-
-> 注意 'mongodb://127.0.0.1:27017/dbs' 后面的 dbs 就是连接上的数据库名，接下来 mongoose 的所有操作都将在这个数据库上。
 

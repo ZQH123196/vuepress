@@ -19,6 +19,7 @@ git add -A
 git commit -m 'deploy'
 
 # 如果发布到 https://<USERNAME>.github.io，SSH 途径，注意提交公钥
+# 如果出错了，别犹豫，直接手动上传吧
 git push -f git@github.com:ZQH123196/zqh123196.github.io.git master
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>

@@ -4,12 +4,20 @@ const fs = require("fs");
 module.exports = {
   title: 'Hello !',
   description: '郑启华的技术文档',
-  plugins: [['@vuepress/back-to-top'], ['mathjax', {
-    target: 'chtml', //'svg' | 'chtml',默认 chtml
-    macros: {
-      '\\Z': '\\mathbb{Z}',
-    },
-  }]],
+  plugins: [
+    ['@vuepress/back-to-top'],
+    ['mathjax', {
+      target: 'chtml', //'svg' | 'chtml',默认 chtml
+      macros: {
+        '\\Z': '\\mathbb{Z}',
+      },
+    }],
+    [
+      '@vuepress/google-analytics',
+      {
+        'ga': 'UA-138235740-1' // UA-00000000-0
+      }
+    ]],
   themeConfig: {
     nav: [{
       text: '文档',
@@ -31,34 +39,36 @@ module.exports = {
 }
 
 function getSidebarConfig(docsPath) {
-	let allFloor = getAllFloor(docsPath)
-	// title 就在 second 层级
-	let titles = allFloor.second.map((val) => {
-		console.log(val)
-		return /.*blog\/([^/]*)\/?.*/.exec(val)[1]
-	})
-	// console.log(titles)
-	// 进行数据裁剪，绝对路径 vuepress 解析不了
-	let fourthStair = allFloor.fourth.map((val) => {
-		return val.replace(/.*docs/, "")
-	});
-	let result = [];
-	for (let i = 0; i < titles.length; i++) {
-		let re = new RegExp(`.*blog/${titles[i]}/?.*`)
-		result.push({
-			title: titles[i],
-			collapsable: false
-		})
-		result[i].children = fourthStair.filter((val) => {
-			if (re.test(val)) {
-				return true
-			}
-			return false
-		})
-		if(result[i].children.length === 0) result[i].children = []
-	}
-	
-	return result
+  let allFloor = getAllFloor(docsPath)
+  // title 就在 second 层级
+  let titles = allFloor.second.map((val) => {
+    console.log(val)
+    return /.*blog\/([^/]*)\/?.*/.exec(val)[1]
+  })
+  let ignoreTitles = ['draft', '草稿', 'tmp']
+  titles = titles.filter( val => ignoreTitles.indexOf(val) === -1 )
+
+  // console.log(titles)
+  // 进行数据裁剪，绝对路径 vuepress 解析不了
+  let fourthStair = allFloor.fourth.map((val) => {
+    return val.replace(/.*docs/, "")
+  });
+  let result = [];
+  for (let i = 0; i < titles.length; i++) {
+    let re = new RegExp(`.*blog/${titles[i]}/?.*`)
+    result.push({
+      title: titles[i],
+      collapsable: false
+    })
+    result[i].children = fourthStair.filter((val) => {
+      if (re.test(val)) {
+        return true
+      }
+      return false
+    })
+    if (result[i].children.length === 0) result[i].children = []
+  }
+  return result
 }
 
 // docs 主文档
@@ -67,41 +77,41 @@ function getSidebarConfig(docsPath) {
 // docs/blog/collections/title 第三阶，文档标题
 // docs/blog/collections/title/file 第四阶，实际文档和相关文件，实际文档为 note.md 
 function getAllFloor(docsPath) {
-	docsPath = path.resolve(docsPath)
-	let allFloor = {
-		first: [],
-		second: [],
-		third: [],
-		fourth: []
-	}
+  docsPath = path.resolve(docsPath)
+  let allFloor = {
+    first: [],
+    second: [],
+    third: [],
+    fourth: []
+  }
 
-	let firstStair = path.join(docsPath, "blog");
-	allFloor.first.push(firstStair)
+  let firstStair = path.join(docsPath, "blog");
+  allFloor.first.push(firstStair)
 
-	let collections = fs.readdirSync(firstStair)
-	for (let collection of collections) {
-		let collectionPath = path.join(firstStair, collection)
-		// 过滤非文件夹的路径
-		if (!(fs.statSync(collectionPath).isDirectory())) { continue }
-		allFloor.second.push(collectionPath)
+  let collections = fs.readdirSync(firstStair)
+  for (let collection of collections) {
+    let collectionPath = path.join(firstStair, collection)
+    // 过滤非文件夹的路径
+    if (!(fs.statSync(collectionPath).isDirectory())) { continue }
+    allFloor.second.push(collectionPath)
 
-		let titleDirs = fs.readdirSync(collectionPath)
-		for (let titleDir of titleDirs) {
-			let titleDirPath = path.join(collectionPath, titleDir)
-			// 过滤非文件夹的路径
-			if (!(fs.statSync(titleDirPath).isDirectory())) { continue }
-			allFloor.third.push(titleDirPath)
+    let titleDirs = fs.readdirSync(collectionPath)
+    for (let titleDir of titleDirs) {
+      let titleDirPath = path.join(collectionPath, titleDir)
+      // 过滤非文件夹的路径
+      if (!(fs.statSync(titleDirPath).isDirectory())) { continue }
+      allFloor.third.push(titleDirPath)
 
-			let files = fs.readdirSync(titleDirPath)
-			for (let file of files) {
-				// 只允许名称为 note.md 的通过
-				if (file !== "note.md") { continue }
-				let filePath = path.join(titleDirPath, file)
-				allFloor.fourth.push(filePath)
-			}
-		}
-	}
-	return allFloor
+      let files = fs.readdirSync(titleDirPath)
+      for (let file of files) {
+        // 只允许名称为 note.md 的通过
+        if (file !== "note.md") { continue }
+        let filePath = path.join(titleDirPath, file)
+        allFloor.fourth.push(filePath)
+      }
+    }
+  }
+  return allFloor
 }
 
   // [

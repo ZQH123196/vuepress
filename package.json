@@ -1,4 +1,6 @@
 {
+  "author": "郑启华",
+  "license": "MIT",
   "scripts": {
     "w": "vuepress dev docs",
     "dev": "vuepress dev docs",
@@ -6,8 +8,9 @@
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
-    "vuepress": "^1.0.0-alpha.46",
     "@vuepress/plugin-back-to-top": "^1.0.0-alpha.46",
+    "@vuepress/plugin-google-analytics": "^1.0.0-alpha.47",
+    "vuepress": "^1.0.0-alpha.46",
     "vuepress-plugin-mathjax": "^1.2.4"
   },
   "dependencies": {}
