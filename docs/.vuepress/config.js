@@ -4,20 +4,45 @@ const fs = require("fs");
 module.exports = {
   title: 'Hello !',
   description: '郑启华的技术文档',
+  // head: [
+  //   ['script', { src: 'https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js' }],
+  //   ['script', { src: 'https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js' }],
+  //   ['script', { src: 'https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js' }],
+  //   ['script', { src: 'https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js' }],
+  // ],
   plugins: [
     ['@vuepress/back-to-top'],
-    ['mathjax', {
-      target: 'chtml', //'svg' | 'chtml',默认 chtml
-      macros: {
-        '\\Z': '\\mathbb{Z}',
-      },
-    }],
+    // ['mathjax', {
+    //   target: 'chtml', //'svg' | 'chtml',默认 chtml
+    //   macros: {
+    //     '\\Z': '\\mathbb{Z}',
+    //   },
+    // }],
     [
       '@vuepress/google-analytics',
       {
         'ga': 'UA-138235740-1' // UA-00000000-0
       }
-    ]],
+    ], 
+    ['demo-code', {
+      showText: 'show code',
+      hideText: 'hide',
+      styleStr: 'text-decoration: underline;',
+      minHeight: 200,
+      onlineBtns: {
+        codepen: true,
+        jsfiddle: true,
+        codesandbox: true,
+      },
+      codesandbox: {
+        deps: { 'lodash': 'latest' },
+        json: '',
+        query: '',
+        embed: '',
+      },
+      demoCodeMark: 'demo-code',
+    }]
+  ],
   themeConfig: {
     nav: [{
       text: '文档',
@@ -46,7 +71,7 @@ function getSidebarConfig(docsPath) {
     return /.*blog\/([^/]*)\/?.*/.exec(val)[1]
   })
   let ignoreTitles = ['draft', '草稿', 'tmp']
-  titles = titles.filter( val => ignoreTitles.indexOf(val) === -1 )
+  titles = titles.filter(val => ignoreTitles.indexOf(val) === -1)
 
   // console.log(titles)
   // 进行数据裁剪，绝对路径 vuepress 解析不了
