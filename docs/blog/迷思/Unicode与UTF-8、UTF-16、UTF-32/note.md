@@ -88,8 +88,5 @@ Unicode 码位的汉字排序是康熙字典序，而不是新华字典序（UTF
 ## 参考：
 * [UTF-8 Everywhere](http://utf8everywhere.org/zh-cn)
 * [wikipedia](https://en.wikipedia.org/wiki/Unicode)
-* [Unicode字符集的编码方式以及码点、码元](https://www.cnblogs.com/* benbenalin/p/6921553.html)
-* [为什么utf-8没有字节序问题？](http://bbs.chinaunix.net/* thread-1680943-1-1.html)
-
-
-
+* [Unicode字符集的编码方式以及码点、码元](https://www.cnblogs.com/benbenalin/p/6921553.html)
+* [为什么utf-8没有字节序问题？](http://bbs.chinaunix.net/ thread-1680943-1-1.html)

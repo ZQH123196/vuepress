@@ -94,7 +94,9 @@ INSTALLED_APPS = [
 ![image.png](https://upload-images.jianshu.io/upload_images/5690889-dedc313253f97194.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 登陆成功
 ![image.png](https://upload-images.jianshu.io/upload_images/5690889-e071f3cd1043743a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ---
+
 ## 添加中文支持
 
 往 setting.py 中导入
@@ -107,6 +109,7 @@ from django.utils.translation import ugettext_lazy as _
 ![image.png](https://upload-images.jianshu.io/upload_images/5690889-c0fb39136330872e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 参考：[广告DN](https://blog.csdn.net/xman1123/article/details/75311326)
+
 ---
 
 ## 使用数据库
@@ -139,9 +142,8 @@ D:\PRJ\student_management\Django_simple (master -> origin)
 SQLiteStudio 查看更改：
 ![image.png](https://upload-images.jianshu.io/upload_images/5690889-2763172496eb7967.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-
-
 ---
+
 ## 编写控制台信息
 
 控制台由 admin.py 控制，最后用 xadmin.site.register 来注册上去。
