@@ -24,24 +24,7 @@ module.exports = {
         'ga': 'UA-138235740-1' // UA-00000000-0
       }
     ], 
-    ['demo-code', {
-      showText: 'show code',
-      hideText: 'hide',
-      styleStr: 'text-decoration: underline;',
-      minHeight: 200,
-      onlineBtns: {
-        codepen: true,
-        jsfiddle: true,
-        codesandbox: true,
-      },
-      codesandbox: {
-        deps: { 'lodash': 'latest' },
-        json: '',
-        query: '',
-        embed: '',
-      },
-      demoCodeMark: 'demo-code',
-    }]
+    // ['demo-code']
   ],
   themeConfig: {
     nav: [{
