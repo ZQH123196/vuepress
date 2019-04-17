@@ -5,6 +5,7 @@
     "w": "vuepress dev docs",
     "dev": "vuepress dev docs",
     "docs": "vuepress dev docs",
+    "build": "vuepress build docs",
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
