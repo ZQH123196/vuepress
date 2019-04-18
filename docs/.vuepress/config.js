@@ -50,8 +50,9 @@ function getSidebarConfig(docsPath) {
   let allFloor = getAllFloor(docsPath)
   // title 就在 second 层级
   let titles = allFloor.second.map((val) => {
-    console.log(val)
-    return /.*blog\/([^/]*)\/?.*/.exec(val)[1]
+    let reLinux = /.*blog\/([^/]*)\/?.*/
+    let reWin = /.*blog\/([^/]*)\/?.*/
+    return reLinux.exec(val)[1]
   })
   let ignoreTitles = ['draft', '草稿', 'tmp']
   titles = titles.filter(val => ignoreTitles.indexOf(val) === -1)
@@ -76,6 +77,10 @@ function getSidebarConfig(docsPath) {
     })
     if (result[i].children.length === 0) result[i].children = []
   }
+
+  // 手动排队
+  result.push(result.shift());``
+
   return result
 }
 
@@ -121,64 +126,3 @@ function getAllFloor(docsPath) {
   }
   return allFloor
 }
-
-  // [
-  //   {
-  //     title: titles[0],
-  //     collapsable: false,
-  //     children: [
-  //       ``,
-  //     ]
-  //   },
-  //   {
-  //     title: titles[1],
-  //     collapsable: false,
-  //     children: [
-  //       ``,
-  //     ]
-  //   },
-  //   {
-  //     title: titles[2],
-  //     collapsable: false,
-  //     children: [
-  //       `/blog/${titles[2]}/转轴展开照片墙/note`,
-  //       `/blog/${titles[2]}/魔方/note`,
-  //       `/blog/${titles[2]}/3D旋转轮播图/note`,
-  //       `/blog/${titles[2]}/小胡子/note`,
-  //       `/blog/${titles[2]}/翻页动画/note`,
-  //       `/blog/${titles[2]}/书籍展示/note`,
-  //       `/blog/${titles[2]}/3D环绕球/note`,
-  //       `/blog/${titles[2]}/弹出层/note`,
-  //       `/blog/${titles[2]}/CSS\ day\ 1/note`,
-  //     ]
-  //   },
-  //   {
-  //     title: titles[3],
-  //     collapsable: true,
-  //     children: [
-  //       // `/blog/${title4}/callapply/note`,
-  //       // `/blog/${title4}/bind/note`,
-  //     ]
-  //   },
-  //   {
-  //     title: titles[4],
-  //     collapsable: false,
-  //     children: [
-  //       `/blog/${titles[4]}/搜索框设计/note`,
-  //       `/blog/${titles[4]}/CSS-matrix/note`,
-  //       `/blog/${titles[4]}/defineProperty/note`,
-  //       `/blog/${titles[4]}/Koa2/note`,
-  //       `/blog/${titles[4]}/Koa2/note1`,
-  //       `/blog/${titles[4]}/数据劫持/note`,
-  //       `/blog/${titles[4]}/Proxy\&Reflect/note`,
-  //       `/blog/${titles[4]}/ES5\ 模拟\ Class/note`,
-  //     ]
-  //   },
-  //   {
-  //     title: titles[5],
-  //     collapsable: true,
-  //     children: [
-  //       `/blog/thinking/标准与规范/note.md`,
-  //     ]
-  //   }
-  // ]

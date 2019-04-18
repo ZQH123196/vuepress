@@ -1,4 +1,4 @@
-# flexbox
+# flexbox 自适应布局
 
 关于 flexbox 我以前做了一个[思维导图](https://www.processon.com/view/5a9ae047e4b04b1b68fd40c7#map)。
 

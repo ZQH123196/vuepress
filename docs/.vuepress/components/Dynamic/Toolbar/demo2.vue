@@ -1,11 +1,9 @@
 <template>
     <div class="demo1">
-        <a href="javascript:;">
-            <span class="code"></span>
-        </a>
-        <a href="javascript:;"></a>
-        <a href="javascript:;"><span class="code"></span></a>
-        <a href="javascript:;"></a>
+        <a href="javascript:;"><span class="toolbar-btn"></span></a>
+        <a href="javascript:;"><span class="toolbar-btn"></span></a>
+        <a href="javascript:;"><span class="toolbar-btn"></span></a>
+        <a href="javascript:;"><span class="toolbar-btn"></span></a>
     </div>
 </template>
 

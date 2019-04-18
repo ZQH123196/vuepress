@@ -1,5 +1,5 @@
 # WSL(Linux) 源码编译 gdb-8.1 带 python 支持
-<!-- 
+
 ## 前言
 系统：Ubuntu 16.4（WSL）
 正常都不会需要升级 GDB 的，但如果是对新标准、新特性、新语言有要求的话，那就需要升级 GDB 了。
@@ -7,7 +7,9 @@
 最新的 gdb 是 8.2，不过太新怕有 bug，我们上 gdb-8.1。
 
 ---
+
 ## 下载
+
 下载到 D 盘：
 ```bash
 eor@DESKTOP-CNB2LNA:/mnt/c/Users/admin$ cd /mnt/d/inbox/
@@ -16,6 +18,7 @@ eor@DESKTOP-CNB2LNA:/mnt/d/inbox$ wget http://ftp.gnu.org/gnu/gdb/gdb-8.1.1.tar.
 ---
 
 ## 配置、编译、安装
+
 > 如果不需要用到 Python 调试脚本，可以跳过 python-dev 和去除 -with-python=python3 的标志，因为这可能会导致失败。
 
 带上 python 的开发环境，这是为了调试 Rust 而装的。
@@ -40,6 +43,7 @@ eor@DESKTOP-CNB2LNA:/mnt/d/inbox/gdb-8.1.1$ make clean
 耐心等待，可能比较久。
 
 ## 建立链接
+
 由于安装时我们加上了前缀 -prefix=/usr/local/gdb，这将会把软件安装到 /usr/local/gdb 目录下，好处是卸载时只需要删除这个文件夹就可以了。
 ```bash
 eor@DESKTOP-CNB2LNA:/mnt/d/inbox/gdb-8.1.1$ /usr/local/gdb/bin/gdb
@@ -57,6 +61,7 @@ ls -al /usr/local/bin/
 
 
 ## 检查 python 支持
+
 在用户的主目录 ~ 下新建一个 .gdbinit 文件和 python 文件。
 ```bash
 cd ~
@@ -81,11 +86,15 @@ source ~/hello.py
 ---
 
 ## 参考链接
+
 [gdb 文档](https://sourceware.org/gdb/current/onlinedocs/gdb/Python.html#Python)
+
 [PythonGdbTutorial](https://sourceware.org/gdb/wiki/PythonGdbTutorial)
+
 [dev-python-gdb-support](https://devguide.python.org/gdb/#gdb-support)
+
 [用 Python 拓展 GDB（一）](http://python.jobbole.com/85415/)
 
 :::tip
 这是从我简书文章的搬运，我向自己申请了转载hh。
-::: -->
+:::
