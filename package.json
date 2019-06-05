@@ -5,8 +5,8 @@
     "w": "vuepress dev docs",
     "dev": "vuepress dev docs",
     "docs": "vuepress dev docs",
-    "build": "vuepress build docs",
-    "docs:build": "vuepress build docs"
+    "build": "cross-env NODE_ENV='publish' vuepress build docs",
+    "docs:build": "cross-env NODE_ENV='publish' vuepress build docs"
   },
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.0.0-alpha.46",
@@ -15,7 +15,8 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "vuepress": "^1.0.0-alpha.46",
-    "vuepress-plugin-mathjax": "^1.2.4"
+    "cross-env": "^5.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+  }
 }

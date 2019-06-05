@@ -1,6 +1,9 @@
 ---
-mathjax:
-  presets: '\def\lr#1#2#3{\left#1#2\right#3}'
 ---
 
 # matrix
+
+% \f is defined as f(#1) using the macro
+\f{x} = \int_{-\infty}^\infty
+    \hat \f\xi\,e^{2 \pi i \xi x}
+    \,d\xi
