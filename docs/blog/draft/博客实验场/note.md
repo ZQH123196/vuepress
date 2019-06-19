@@ -8,7 +8,7 @@ sandbox：
 
 codepen：
 参考：https://blog.codepen.io/documentation/features/embedded-pens/
-<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,result" data-user="ZhengQiHua" data-slug-hash="XeVbYr" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="练习1-图灵传">
+<p class="codepen" data-height="487" data-theme-id="dark" data-default-tab="html,result" data-user="ZhengQiHua" data-slug-hash="XeVbYr" style="height: 487px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="练习1-图灵传">
   <span>See the Pen <a href="https://codepen.io/ZhengQiHua/pen/XeVbYr/">
   练习1-图灵传</a> by 郑启华 (<a href="https://codepen.io/ZhengQiHua">@ZhengQiHua</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
