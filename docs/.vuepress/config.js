@@ -11,8 +11,8 @@ module.exports = {
     // ['script', { src: 'https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js' }],
     // ['script', { src: 'https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js' }],
     // ['script', { src: 'https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js' }],
-    ['link', {rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css", integrity: "sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j", crossorigin: "anonymous"}],
-    ['script', { src: "https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js", integrity: "sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ", crossorigin: "anonymous"}]
+    ['link', { rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css", integrity: "sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j", crossorigin: "anonymous" }],
+    ['script', { src: "https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js", integrity: "sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ", crossorigin: "anonymous" }]
   ],
   plugins: [
     ['@vuepress/back-to-top'],
@@ -21,7 +21,7 @@ module.exports = {
       {
         'ga': 'UA-138235740-1' // UA-00000000-0
       }
-    ], 
+    ],
   ],
   themeConfig: {
     nav: [{
@@ -42,6 +42,7 @@ module.exports = {
     lineNumbers: true
   },
 }
+
 
 function getSidebarConfig(docsPath) {
   let allFloor = getAllFloor(docsPath)
@@ -88,7 +89,7 @@ function getSidebarConfig(docsPath) {
   }
 
   // 手动排队
-  result.push(result.shift());``
+  result.push(result.shift()); ``
 
   return result
 }
@@ -134,12 +135,28 @@ function getAllFloor(docsPath) {
       }
     }
   }
-
-  if (os.platform() === 'win32'){
-    allFloor.first = allFloor.first.map( (valStr) => { return valStr.replace(/\\/g, '/') })
-    allFloor.second = allFloor.second.map( (valStr) => { return valStr.replace(/\\/g, '/') })
-    allFloor.third = allFloor.third.map( (valStr) => { return valStr.replace(/\\/g, '/') })
-    allFloor.fourth = allFloor.fourth.map( (valStr) => { return valStr.replace(/\\/g, '/') })
+  // 如果是 windows 就将路径全部替换为 Linux 的 /
+  if (os.platform() === 'win32') {
+    allFloor.first = allFloor.first.map((valStr) => {
+      let result = valStr.replace(/\\/g, '/');
+      // result = result.replace(/[ ]/g, '');
+      return result;
+    })
+    allFloor.second = allFloor.second.map((valStr) => {
+      let result = valStr.replace(/\\/g, '/');
+      // result = result.replace(/[ ]/g, '');
+      return result;
+    })
+    allFloor.third = allFloor.third.map((valStr) => {
+      let result = valStr.replace(/\\/g, '/');
+      // result = result.replace(/[ ]/g, '');
+      return result;
+    })
+    allFloor.fourth = allFloor.fourth.map((valStr) => {
+      let result = valStr.replace(/\\/g, '/');
+      // result = result.replace(/[ ]/g, '');
+      return result;
+    })
   }
   return allFloor
 }

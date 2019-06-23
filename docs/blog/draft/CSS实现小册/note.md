@@ -46,5 +46,6 @@ background: url(xxx.img) no-repeat #58a;
 background-position: right 20px bottom 10px;
 ```
 > 背景图片跟右边缘保持 20px 的偏移量,同时跟底边保持 10px 的偏移量。
->> 我们也可以通过将图片放置到一个 div 中通过 position: absolute 来实现这个功能，不过问题是，这会增加 CSS 代码量和 DOM 元素的数量。所以尽量使用背景定位吧。
+>
+> > 我们也可以通过将图片放置到一个 div 中通过 position: absolute 来实现这个功能，不过问题是，这会增加 CSS 代码量和 DOM 元素的数量。所以尽量使用背景定位吧。
 
