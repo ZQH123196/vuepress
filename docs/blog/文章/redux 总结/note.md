@@ -1,22 +1,66 @@
 # redux 总结
 
+只有 store 能改变自己的内容，不是 reducer 并不改变 自变量。
+
+reducer 必须是纯函数，注意，如果因变量依赖了了 new Date() 这就不是纯函数了，因为给定相同的自变量，却会随着事件产生不同的因变量。异步也是如此，因为异步并不一定能成功，所以给定自变量可能会产生不同的因变量。
+
 
 
 解决的痛点：
 
-成长的项目中会有越来越多的 state，这些问题大多来源于 data 对象本身是可变的数据（mutation）和异步的（asynchronicity），redux 就是为了解决这两个问题而出现的。
+成长的项目中会有越来越多的 state，这些问题大多来源于 data 对象本身是可变的数据（mutation）和异步的（asynchronicity）这两个问题，redux 就是为了处理这些而出现。
 
 
 
+1. 如何让数据具有不可变性呢？
+
+Redux 中是依靠纯函数（pure function）的概念来保证每次的 state 都是原始 state 的一个快照。
+
+2. 如何更好的管理异步呢？
+
+使用
 
 
-数据管理库，redux 这个库跟 vuex 的不同在于，redux 不像 vuex 那样跟框架紧耦合，其本身可以被其他框架所使用，是一个通用的状态管理库。
+
+数据管理库，redux 跟 vuex 的不同点在于，redux 不像 vuex 那样跟 Vue 框架紧耦合，其本身可以被其他框架所使用，是一个通用的状态管理库。
 
 > 在 Vue 里面也可以用 redux。
 
-如何让数据具有不可变性呢？
 
-Redux 中是依靠纯函数（pure function）的概念来保证每次的 state 都是原始 state 的一个快照。
+
+## 使用 combineReducers 进行数据的拆分管理
+
+
+
+## 异步操作
+
+一个关键问题没有解决：异步操作怎么办？Action 发出以后，Reducer 立即算出 State，这叫做同步；Action 发出以后，过一段时间再执行 Reducer，这就是异步。
+
+怎么才能 Reducer 在异步操作结束后自动执行呢？这就要用到新的工具：中间件（middleware）。
+
+
+
+## immutable.js
+
+其 set 将返回一个全新的对象。
+
+
+
+redux-immutable，其提供了一个 combineReducers，这个函数所提供的 state 就是 immutable 对象。
+
+
+
+https://segmentfault.com/a/1190000013088373
+
+
+
+要注意的是 toJS 的操作，将会大量耗费性能。
+
+fromJS()
+
+Deeply converts plain JS objects and arrays to Immutable Maps and Lists.
+
+fromJS 的时候会将其内部的包括函数、对象都转换为 immutable 对象，所以在使用 set 的时候要注意将值用 fromJS 转换之后在传入。
 
 
 
@@ -77,6 +121,14 @@ redux 提供了一个便捷绑定 action 的函数 bindActionCreators({actionFn1
 react-redux 则是 react 下 redux 的精简化，如果在第二个参数放置 actions 的对象字面量，其会自动的调用 bindActionCreators 函数，自动的进行一个 dispatch 的绑定。
 
 
+
+好处？
+
+将 store 映射到了 props，这就代表我们其实已经不需要有状态的类组件了（除非我们需要生命周期函数），这时候我们就可以将组件变成性能更高的函数组件。
+
+而且，我们也不用在 store.subscribe(this.setState(store.getState())) 中去订阅了，因为当 store 发生改变将会触发 mapStateToProps 然后 Props 被赋值将会自动引发重新渲染。
+
+> state 和 props 发生改变都会导致重新渲染
 
 ## redux 中间件
 
