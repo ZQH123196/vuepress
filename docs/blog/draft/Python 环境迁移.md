@@ -54,7 +54,7 @@ activate py3
 
 进入虚拟环境，确定虚拟环境的 pip 是否正确
 
-
+冲正，去除原本已经有的，否则有些东西会出现问题，比如 jupyter 可能出现导致了找不到 win32api 的 bug。
 
 切换 pip 的源为国内源，这里用的是清华的 pypi 源，然后将需要迁移的包安装上。
 
@@ -89,7 +89,7 @@ conda create -n py3 --offline
 conda install pip -n py3 --offline
 ```
 
-进入虚拟环境，确认 pip 是虚拟环境的 pip，利用 pip 导入包列表并指定来源路径
+进入虚拟环境，确认 pip 是虚拟环境的 pip，利用 pip 导入包列表并指定来源路径：
 
 ```sh
 pip --version
@@ -97,8 +97,8 @@ pip install --no-index --find-links="你存放的路径\whls" -r requirements.tx
 ```
 
 > 如果你没有安装虚拟环境的 pip，这些包就会安装到你 conda 的宿主 Python 环境下了。
-
-
+>
+> > 注意 powershell 进不了虚拟环境，windows 用 cmd 进。
 
 ## 参考
 
